@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import SideBar from "./components/SideBar";
 
 function App() {
   const [data, setData] = useState(null);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   function handleToggleModal() {
@@ -31,7 +31,7 @@ function App() {
       try {
         const res = await fetch(url);
         const apiData = await res.json();
-        localStorage.setItem(localKey, JSON.parse(apiData));
+        localStorage.setItem(localKey, JSON.stringify(apiData));
         setData(apiData);
         console.log("Fetched from API today");
       } catch (err) {
